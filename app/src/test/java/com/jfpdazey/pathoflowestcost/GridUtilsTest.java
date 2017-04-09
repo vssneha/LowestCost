@@ -24,6 +24,7 @@ public class GridUtilsTest {
 
     @Test
     public void createsOneColumnGridArrayWithOneLineOfStringData() {
+        assertThat(GridUtils.gridArrayFromString("1  \n2   \n3  \n4 \n5"), equalTo(new int[][]{ { 1 },{2},{3},{4},{5} }));
     }
 
     @Test
