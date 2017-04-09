@@ -23,6 +23,10 @@ public class GridUtilsTest {
     }
 
     @Test
+    public void createsOneColumnGridArrayWithOneLineOfStringData() {
+    }
+
+    @Test
     public void createsMultiLineGridArrayWithMultipleLinesOfStringData() {
         assertThat(GridUtils.gridArrayFromString("1  2   3  4 5\n6 7 8  9\t10"),
                 equalTo(new int[][]{ { 1, 2, 3, 4, 5 }, { 6, 7, 8, 9, 10 } }));

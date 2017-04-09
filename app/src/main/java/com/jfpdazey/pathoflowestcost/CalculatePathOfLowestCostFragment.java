@@ -1,6 +1,7 @@
 package com.jfpdazey.pathoflowestcost;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -8,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,7 +50,7 @@ public class CalculatePathOfLowestCostFragment extends Fragment {
     }
 
     private boolean gridContentsAreValid(int[][] contents) {
-        if (contents.length < 1 || contents.length > 10 || contents[0].length < 5 || contents[0].length > 100) {
+        if (contents.length < 1 || contents.length > 10 || contents[0].length < 1 || contents[0].length > 100) {
             return false;
         } else {
             return true;
@@ -87,6 +89,10 @@ public class CalculatePathOfLowestCostFragment extends Fragment {
     class GoOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
             String gridString = ((EditText) getView().findViewById(R.id.custom_grid_contents)).getText().toString();
             int[][] potentialGridContents = GridUtils.gridArrayFromString(gridString);
             if (gridContentsAreValid(potentialGridContents)) {
